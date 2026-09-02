@@ -1,0 +1,24 @@
+# Visual Studio user settings and caches
+.vs/
+*.vcxproj.user
+
+# Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+out/
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Compiled artifacts
+*.exe
+*.dll
+*.obj
+*.pdb
+*.ilk
+
