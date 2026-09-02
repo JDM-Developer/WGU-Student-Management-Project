@@ -133,18 +133,11 @@ bool Roster::removeByStudentID(string studentID) {
     cout << "Student ID " << studentID << " not found." << endl;
     return false; // Student ID was not found
 }
-Roster::~Roster() //Destructs student roster objects
+Roster::~Roster() // Destructs student roster objects
 {
-for (int i = 0; i < numStudents; i++) 
+    for (int i = 0; i < numStudents; i++)
     {
-delete studentRosterArray[i]; //Using delete operator to free up memory allocated
-        studentRosterArray[i] = nullptr; //Sets studentRosterArray pointer to point at nothing
-
-
-
+        delete studentRosterArray[i];
+        studentRosterArray[i] = nullptr;
     }
-
-
-
-
 }
