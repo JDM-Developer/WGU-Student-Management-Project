@@ -62,26 +62,31 @@ void Student::setDegreeType(DegreeType degreeType) { this->degreeType = degreeTy
 
 void Student::printheader() // Prints the header for the student data table
 {
-	cout << "Student ID|First Name|Last Name|Email Address|Age|Days Until Course Complete|Degree Program\n";
+	cout << left
+		<< setw(12) << "Student ID"
+		<< setw(14) << "First Name"
+		<< setw(14) << "Last Name"
+		<< setw(30) << "Email Address"
+		<< setw(7) << "Age"
+		<< setw(22) << "Course Days"
+		<< "Degree Program\n";
+	cout << string(113, '-') << '\n';
 }
-// Prints a single student's data in a formatted manner with tab spacing.
-void Student::print() {
-	cout << getStudentID() << '\t';
-	cout << getFirstName() << '\t';
-	cout << getLastName() << '\t';
-	cout << getAge() << '\t';
-	cout << "{";
+
+// Prints a single student's data in aligned columns.
+void Student::print()
+{
 	double* days = getDaysUntilCourseComplete();
-	cout << days[0] << ", " << days[1] << ", " << days[2] << "} ";
-	cout << DegreeTypeStrings[getDegreeType()] << endl;
+	string courseDays = "{" + std::to_string(static_cast<int>(days[0])) + ", "
+		+ std::to_string(static_cast<int>(days[1])) + ", "
+		+ std::to_string(static_cast<int>(days[2])) + "}";
+
+	cout << left
+		<< setw(12) << getStudentID()
+		<< setw(14) << getFirstName()
+		<< setw(14) << getLastName()
+		<< setw(30) << getEmailAddress()
+		<< setw(7) << getAge()
+		<< setw(22) << courseDays
+		<< DegreeTypeStrings[getDegreeType()] << endl;
 }
-
-
-
-
-
-
-
-
-
-

@@ -74,45 +74,16 @@ void Roster::printAll() //Displays all students
 }
 
 void Roster::printByDegreeProgram(DegreeType degreeProgram)
-
 {
-    Student::printheader(); //Displays students by degree program. 
+    Student::printheader();
 
     for (int i = 0; i <= lastIndex; i++) {
-            if (studentRosterArray[i]->getDegreeType() == degreeProgram) {
-                    cout << studentRosterArray[i]->getStudentID() << '\t'; //Using tab spacing as required for project
-                    cout << studentRosterArray[i]->getFirstName() << '\t';
-                    cout << studentRosterArray[i]->getLastName() << '\t';
-                    cout << studentRosterArray[i]->getEmailAddress() << '\t';
-                    cout << studentRosterArray[i]->getAge() << '\t';
-
-                    // Check if the degree program is "SOFTWARE" before formatting course days
-                    if (degreeProgram == SOFTWARE) {
-                            cout << "{"; //formatting { , , } on the display of days until course complete as required. 
-                            double* days = studentRosterArray[i]->getDaysUntilCourseComplete(); /* Retrieve the array that holds the number of days
-                            to complete each course for this student.*/
-                            
-                            for (int j = 0; j < Student::courseCompleteArraySize; j++) { \
-                                    cout << days[j]; // Loop through each course to display the days required to complete it.
-                                    if (j < Student::courseCompleteArraySize - 1) {
-                                            cout << ", ";  //Display number of days for current course
-                                    }
-                            }
-                            cout << "} "; // End the display format with a closing curly bracket.
-                    }
-                    else { // If the student's degree program is not SOFTWARE, the else part will execute
-                            // If not a "SOFTWARE" degree program, print course days as is
-                            cout << studentRosterArray[i]->getDaysUntilCourseComplete()[0] << '\t';
-                            cout << studentRosterArray[i]->getDaysUntilCourseComplete()[1] << '\t';
-                            cout << studentRosterArray[i]->getDaysUntilCourseComplete()[2] << '\t';
-                    }
-
-                    cout << DegreeTypeStrings[studentRosterArray[i]->getDegreeType()] << '\n';
-            }
+        if (studentRosterArray[i]->getDegreeType() == degreeProgram) {
+            studentRosterArray[i]->print();
+        }
     }
     cout << std::endl;
 }
-
 void Roster::printInvalidEmails()  //Displays students with invalid email
 {
     bool brokenEmail = false; //Declaring boolean brokenEmail, initialized at false.
@@ -135,9 +106,9 @@ void Roster::printAverageDaysInCourse(string studentID) {  //Displays each stude
     for (int i = 0; i <= lastIndex; ++i) {
         if (studentRosterArray[i]->getStudentID() == studentID) {
             double* days = studentRosterArray[i]->getDaysUntilCourseComplete();
-            cout << "Student ID: " << studentID << ", "; //Couts student ID 
-            cout << "Average days in course: " //Couts average days in course
-                << (days[0] + days[1] + days[2]) / 3 << std::endl; //Gives the average
+            cout << left << setw(12) << studentID;
+            cout << "Average days: " << fixed << setprecision(2)
+                << (days[0] + days[1] + days[2]) / 3 << defaultfloat << std::endl; //Gives the average
         }
     }
 }
@@ -164,11 +135,9 @@ bool Roster::removeByStudentID(string studentID) {
 }
 Roster::~Roster() //Destructs student roster objects
 {
-    cout << "DESTRUCTOR CALLED" << std::endl << std::endl; 
-    for (int i = 0; i < numStudents; i++) 
+for (int i = 0; i < numStudents; i++) 
     {
-        cout << "Deleting Student #" << i + 1 << std::endl; //For loop couts "Deleting Student" for each deleted object
-        delete studentRosterArray[i]; //Using delete operator to free up memory allocated
+delete studentRosterArray[i]; //Using delete operator to free up memory allocated
         studentRosterArray[i] = nullptr; //Sets studentRosterArray pointer to point at nothing
 
 
