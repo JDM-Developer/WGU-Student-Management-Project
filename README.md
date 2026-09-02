@@ -7,6 +7,10 @@ Developed a C++ application to manage student data for an imaginary university, 
 **Course**: SCRIPTING AND PROGRAMMING - APPLICATIONS — C867  
 **Tools & Environment**: Visual Studio, C++
 
+## Project Demo
+
+![Student management project console output](docs/project-screenshot.png)
+
 ## Key Responsibilities
 
 - **Data Management**: Designed and implemented classes to handle student data, including student ID, name, email, age, course completion days, and degree programs.
